@@ -65,22 +65,22 @@ def retrieve_cfg(args, use_rlg_config=False):
                      "ShadowHandCatchOver2Underarm", "ShadowHandBottleCap", "ShadowHandDoorCloseInward", "ShadowHandDoorCloseOutward",
                     "ShadowHandDoorOpenInward", "ShadowHandDoorOpenOutward", "ShadowHandKettle", "ShadowHandPen", "ShadowHandSwitch",
                     "ShadowHandPushBlock", "ShadowHandSwingCup", "ShadowHandGraspAndPlace", "ShadowHandScissors", "AllegroHandOver", "AllegroHandCatchUnderarm"]:
-        return os.path.join(args.logdir, "{}/{}/{}".format(args.task, args.algo, args.algo)), "cfg/{}/config.yaml".format(args.algo), "cfg/{}.yaml".format(args.task)
+        return os.path.join(args.logdir, "{}/{}/{}".format(args.task, args.algo, args.algo)), os.path.dirname(__file__)+"/../cfg/{}/config.yaml".format(args.algo), os.path.dirname(__file__)+"/../cfg/{}.yaml".format(args.task)
 
     elif args.task in ["ShadowHandLiftUnderarm"]:
-        return os.path.join(args.logdir, "{}/{}/{}".format(args.task, args.algo, args.algo)), "cfg/{}/lift_config.yaml".format(args.algo), "cfg/{}.yaml".format(args.task)
+        return os.path.join(args.logdir, "{}/{}/{}".format(args.task, args.algo, args.algo)), os.path.dirname(__file__)+"/../cfg/{}/lift_config.yaml".format(args.algo), os.path.dirname(__file__)+"/../cfg/{}.yaml".format(args.task)
 
     elif args.task in ["ShadowHandBlockStack"]:
-        return os.path.join(args.logdir, "{}/{}/{}".format(args.task, args.algo, args.algo)), "cfg/{}/stack_block_config.yaml".format(args.algo), "cfg/{}.yaml".format(args.task)
+        return os.path.join(args.logdir, "{}/{}/{}".format(args.task, args.algo, args.algo)), os.path.dirname(__file__)+"/../cfg/{}/stack_block_config.yaml".format(args.algo), os.path.dirname(__file__)+"/../cfg/{}.yaml".format(args.task)
 
     elif args.task in ["ShadowHand", "ShadowHandReOrientation"]:
-        return os.path.join(args.logdir, "{}/{}/{}".format(args.task, args.algo, args.algo)), "cfg/{}/config.yaml".format(args.algo), "cfg/{}.yaml".format(args.task)
+        return os.path.join(args.logdir, "{}/{}/{}".format(args.task, args.algo, args.algo)), os.path.dirname(__file__)+"/../cfg/{}/config.yaml".format(args.algo), os.path.dirname(__file__)+"/../cfg/{}.yaml".format(args.task)
 
     elif args.task in ["ShadowHandMetaMT4", "ShadowHandMetaMT1"]:
-        return os.path.join(args.logdir, "{}/{}/{}".format(args.task, args.algo, args.algo)), "cfg/{}/config.yaml".format(args.algo), "cfg/meta_env_cfg/{}.yaml".format(args.task)
+        return os.path.join(args.logdir, "{}/{}/{}".format(args.task, args.algo, args.algo)), os.path.dirname(__file__)+"/../cfg/{}/config.yaml".format(args.algo), "cfg/meta_env_cfg/{}.yaml".format(args.task)
 
     elif args.task in ["ShadowHandMetaMT1"]:
-        return os.path.join(args.logdir, "{}/{}/{}".format(args.task, args.algo, args.algo)), "cfg/{}/config.yaml".format(args.algo), "cfg/meta_env_cfg/{}.yaml".format(args.task)
+        return os.path.join(args.logdir, "{}/{}/{}".format(args.task, args.algo, args.algo)), os.path.dirname(__file__)+"/../cfg/{}/config.yaml".format(args.algo), "cfg/meta_env_cfg/{}.yaml".format(args.task)
 
     else:
         warn_task_name()
@@ -88,10 +88,10 @@ def retrieve_cfg(args, use_rlg_config=False):
 
 
 def load_cfg(args, use_rlg_config=False):
-    with open(os.path.join(os.getcwd(), args.cfg_train), 'r') as f:
+    with open(os.path.join(os.path.dirname(__file__)+'/../', args.cfg_train), 'r') as f:
         cfg_train = yaml.load(f, Loader=yaml.SafeLoader)
 
-    with open(os.path.join(os.getcwd(), args.cfg_env), 'r') as f:
+    with open(os.path.join(os.path.dirname(__file__)+'/../', args.cfg_env), 'r') as f:
         cfg = yaml.load(f, Loader=yaml.SafeLoader)
 
     # Override number of environments if passed on the command line

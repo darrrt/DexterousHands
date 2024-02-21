@@ -291,14 +291,14 @@ class ShadowHandBlockStack(BaseTask):
         lower = gymapi.Vec3(-spacing, -spacing, 0.0)
         upper = gymapi.Vec3(spacing, spacing, spacing)
 
-        asset_root = "../../assets"
+        asset_root = os.path.join(os.path.dirname(__file__),"../../assets")
         shadow_hand_asset_file = "mjcf/open_ai_assets/hand/shadow_hand.xml"
         shadow_hand_another_asset_file = "mjcf/open_ai_assets/hand/shadow_hand1.xml"
-        table_texture_files = "../assets/textures/texture_stone_stone_texture_0.jpg"
+        table_texture_files = os.path.dirname(__file__)+'/../'+"../assets/textures/texture_stone_stone_texture_0.jpg"
         table_texture_handle = self.gym.create_texture_from_file(self.sim, table_texture_files)
 
         if "asset" in self.cfg["env"]:
-            asset_root = self.cfg["env"]["asset"].get("assetRoot", asset_root)
+            #asset_root = self.cfg["env"]["asset"].get("assetRoot", asset_root)
             shadow_hand_asset_file = self.cfg["env"]["asset"].get("assetFileName", shadow_hand_asset_file)
 
         object_asset_file = self.asset_files_dict[self.object_type]

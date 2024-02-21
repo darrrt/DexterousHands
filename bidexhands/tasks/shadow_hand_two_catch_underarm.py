@@ -272,12 +272,12 @@ class ShadowHandTwoCatchUnderarm(BaseTask):
         lower = gymapi.Vec3(-spacing, -spacing, 0.0)
         upper = gymapi.Vec3(spacing, spacing, spacing)
 
-        asset_root = "../../assets"
+        asset_root = os.path.join(os.path.dirname(__file__),"../../assets")
         shadow_hand_asset_file = "mjcf/open_ai_assets/hand/shadow_hand.xml"
         shadow_hand_another_asset_file = "mjcf/open_ai_assets/hand/shadow_hand1.xml"
 
         if "asset" in self.cfg["env"]:
-            asset_root = self.cfg["env"]["asset"].get("assetRoot", asset_root)
+            #asset_root = self.cfg["env"]["asset"].get("assetRoot", asset_root)
             shadow_hand_asset_file = self.cfg["env"]["asset"].get("assetFileName", shadow_hand_asset_file)
 
         object_asset_file = self.asset_files_dict[self.object_type]
